@@ -1,8 +1,18 @@
 const express = require('express');
-const router = express.Router();
 const firebase = require('firebase-admin');
+const rateLimit = require('express-rate-limit');
 
-router.post('/login', async (req, res) => {
+const router = express.Router();
+
+// Configure rate limiting
+const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 5, // Limit each IP to 5 requests per windowMs
+    message: 'Too many login attempts from this IP, please try again later.',
+});
+
+// Apply rate limiting to the login route
+router.post('/login', loginLimiter, async (req, res) => {
     const { email, password } = req.body;
 
     try {
