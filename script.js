@@ -92,3 +92,13 @@ function togglePause() {
     pauseButton.textContent = gamePaused ? 'Resume' : 'Pause';
     message.textContent = gamePaused ? 'Game Paused' : `Level ${currentLevel}: Fixing... (${fixCount}/${maxFixes})`;
 }
+
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        console.log('User is logged in:', user);
+        // Show the game interface
+    } else {
+        console.log('No user logged in');
+        // Show the login/signup form
+    }
+});
