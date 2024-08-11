@@ -1,10 +1,12 @@
 let fixCount = 0;
-const maxFixes = 20;  // Number of clicks before explosion
+const maxFixes = 20; 
 
 const laptop = document.getElementById('laptop');
 const message = document.getElementById('message');
 
-laptop.addEventListener('click', () => {
+laptop.addEventListener('click', fixLaptop);
+
+function fixLaptop() {
     fixCount++;
 
     if (fixCount < maxFixes) {
@@ -12,11 +14,11 @@ laptop.addEventListener('click', () => {
     } else {
         explode();
     }
-});
+}
 
 function explode() {
-    laptop.src = 'assets/explode.gif';  // Placeholder image for explosion
+    laptop.src = 'assets/explode.gif';
     message.textContent = 'Boom! TOO LATE!!!!!!!!!!!!!!!!!!!!!!!!!!!! The laptop exploded!';
     laptop.style.cursor = 'not-allowed';
-    laptop.removeEventListener('click', () => {});  // Disable further clicks
+    laptop.removeEventListener('click', fixLaptop);
 }
