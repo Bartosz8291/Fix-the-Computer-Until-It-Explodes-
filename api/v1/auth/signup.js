@@ -1,14 +1,18 @@
 const express = require('express');
-const router = express.Router();
 const firebase = require('firebase-admin');
+const rateLimit = require('express-rate-limit');
 
-// Initialize Firebase Admin SDK
-const serviceAccount = require('./path/to/serviceAccountKey.json'); // Download from Firebase console
-firebase.initializeApp({
-    credential: firebase.credential.cert(serviceAccount)
+const router = express.Router();
+
+// Configure rate limiting
+const signupLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // Limit each IP to 100 requests per windowMs
+    message: 'Too many accounts created from this IP, please try again later.',
 });
 
-router.post('/signup', async (req, res) => {
+// Apply rate limiting to the signup route
+router.post('/signup', signupLimiter, async (req, res) => {
     const { email, password } = req.body;
 
     try {
