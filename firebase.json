@@ -1,0 +1,8 @@
+{
+  "hosting": {
+    "site": "fix-the-computer-until-it-explodes",
+
+    "public": "public",
+    ...
+  }
+}
