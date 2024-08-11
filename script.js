@@ -69,11 +69,11 @@ function updateTexts() {
     
     // Update text content based on the selected language
     document.getElementById('message').textContent = text.message;
-    document.querySelector('#menu-container button:nth-child(2)').textContent = text.play;
-    document.querySelector('#menu-container button:nth-child(3)').textContent = text.laptopSelection;
-    document.querySelector('#menu-container button:nth-child(4)').textContent = text.creation;
+    document.querySelector('#menu-container button:nth-child(1)').textContent = text.play;
+    document.querySelector('#menu-container button:nth-child(2)').textContent = text.laptopSelection;
+    document.querySelector('#menu-container button:nth-child(3)').textContent = text.creation;
+    document.querySelector('#menu-container button:nth-child(4)').textContent = text.settings;
     document.querySelector('#settings-container button').textContent = text.backToMenu;
-    document.querySelector('#menu-container button:nth-child(5)').textContent = text.settings;
 }
 
 // Initial call to set text in default language
