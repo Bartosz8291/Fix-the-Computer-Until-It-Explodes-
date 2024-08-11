@@ -16,7 +16,7 @@ laptop.addEventListener('click', () => {
 
 function explode() {
     laptop.src = 'assets/explode.gif';  // Placeholder image for explosion
-    message.textContent = 'Boom! The laptop exploded!';
+    message.textContent = 'Boom! TOO LATE!!!!!!!!!!!!!!!!!!!!!!!!!!!! The laptop exploded!';
     laptop.style.cursor = 'not-allowed';
     laptop.removeEventListener('click', () => {});  // Disable further clicks
 }
