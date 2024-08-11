@@ -1,33 +1,38 @@
-const auth = firebase.auth();
+const db = firebase.firestore();
 
-function login() {
-    const email = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
+function saveUserProgress(level, score) {
+    const user = auth.currentUser;
 
-    auth.signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            // Logged in
-            console.log('User logged in:', userCredential.user);
-            document.getElementById('auth-container').style.display = 'none';
-            // Proceed to the game or user dashboard
+    if (user) {
+        db.collection('users').doc(user.uid).set({
+            level: level,
+            score: score
+        })
+        .then(() => {
+            console.log('User progress saved.');
         })
         .catch((error) => {
-            console.error('Login error:', error.message);
+            console.error('Error saving progress:', error);
         });
+    }
 }
 
-function signup() {
-    const email = document.getElementById('signup-email').value;
-    const password = document.getElementById('signup-password').value;
+function getUserProgress() {
+    const user = auth.currentUser;
 
-    auth.createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            // Signed up
-            console.log('User signed up:', userCredential.user);
-            document.getElementById('auth-container').style.display = 'none';
-            // Proceed to the game or user dashboard
+    if (user) {
+        db.collection('users').doc(user.uid).get()
+        .then((doc) => {
+            if (doc.exists) {
+                console.log('User progress:', doc.data());
+                // Load progress into the game
+            } else {
+                console.log('No progress found.');
+            }
         })
         .catch((error) => {
-            console.error('Signup error:', error.message);
+            console.error('Error fetching progress:', error);
         });
+    }
 }
+```
