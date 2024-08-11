@@ -15,7 +15,7 @@
             margin: 0;
             overflow: hidden;
         }
-        #menu-container, #game-container, #creation-container {
+        #menu-container, #game-container, #creation-container, #settings-container {
             text-align: center;
             display: none;
         }
@@ -40,15 +40,29 @@
             width: 300px; /* Adjust the size of the logo as needed */
             margin-bottom: 20px;
         }
+        #settings-container {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div id="menu-container">
-        <!-- Replacing the text title with an image -->
         <img id="logo" src="assets/logo.png" alt="Game Logo">
         <button class="button" onclick="startGame()">Play</button>
         <button class="button" onclick="showLaptopSelection()">Laptop Selection</button>
         <button class="button" onclick="showCreation()">Creation (Coming Soon)</button>
+        <button class="button" onclick="showSettings()">Settings</button>
+    </div>
+
+    <div id="settings-container">
+        <h2>Settings</h2>
+        <label for="language">Select Language:</label>
+        <select id="language" onchange="changeLanguage()">
+            <option value="en">English</option>
+            <option value="pl">Polish</option>
+            <!-- Add more languages as needed -->
+        </select>
+        <button class="button" onclick="backToMenu()">Back to Menu</button>
     </div>
 
     <div id="laptop-selection-container">
@@ -71,28 +85,5 @@
     </div>
 
     <script src="script.js"></script>
-    <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyB_IUraRVSqa421f2cNtzub3v8FuMMc-xA",
-    authDomain: "ftcuie.firebaseapp.com",
-    projectId: "ftcuie",
-    storageBucket: "ftcuie.appspot.com",
-    messagingSenderId: "414412723437",
-    appId: "1:414412723437:web:15a35b21294f096ca2e8e4",
-    measurementId: "G-0V3HXP209B"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
 </body>
 </html>
